@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        DiscordBot
 // @description A bot to play around with Discord API using Node js and DiscordJS
-// @match       node desktop/Chat/DiscordBot.js
+// @match       node desktop/Chat/DiscordBotJs/DiscordBot.js
 // ==/UserScript==
 
 const Discord = require('discord.js')
@@ -27,7 +27,7 @@ if (!message.content.startsWith(prefix) || message.author.bot) {
     }
     
     if (command === `server`) {
-	    message.channel.send(`Server name: ${message.guild.name}\nTotal members:                                 ${message.guild.memberCount}`) // .send just sends a message
+	    message.channel.send(`Server name: ${message.guild.name}\nTotal members: ${message.guild.memberCount}`) // .send just sends a message
     }
     
     if (command === 'kick') {
@@ -38,7 +38,7 @@ if (!message.content.startsWith(prefix) || message.author.bot) {
         hugUser(message.mentions.users.first(), message.member, message)
     }
     
-    else if (command === 'prune') {
+    if (command === 'prune') {
 	    const amount = parseInt(args[0])
 
 	    pruneMessages(amount, message)
@@ -63,4 +63,3 @@ function pruneMessages(amount, message) {
     message.channel.bulkDelete(amount);
     message.channel.send(`I just deleted ${amount} messages.`)
 }
-
